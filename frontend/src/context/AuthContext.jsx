@@ -8,16 +8,20 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(() => localStorage.getItem("authToken"));
     const [loading, setLoading] = useState(true);
 
+    // ✅ Load user profile on app start or when token changes
     useEffect(() => {
         const loadUser = async () => {
             if (!token) return setLoading(false);
             try {
                 const data = await getProfileService();
+                if (!data || !data._id) {
+                    logout();
+                    return;
+                }
                 setUser(data);
                 localStorage.setItem("authUser", JSON.stringify(data));
             } catch (err) {
-                if (err.response?.status === 401) logout();
-                else console.error("Auto-login failed:", err);
+                logout();
             } finally {
                 setLoading(false);
             }
@@ -37,15 +41,23 @@ export const AuthProvider = ({ children }) => {
         setToken(data.token);
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("authUser", JSON.stringify(userInfo));
+
+        // 🔹 Notify all components that authentication is updated
+        window.dispatchEvent(new Event("auth-updated"));
     };
 
     const login = async (email, password) => {
+        // ✅ Clear old session first
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("authUser");
         const data = await loginService({ email, password });
         storeAuthData(data);
         return data;
     };
 
     const register = async (formData) => {
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("authUser");
         const data = await registerService(formData);
         storeAuthData(data);
         return data;
@@ -56,6 +68,7 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
         localStorage.removeItem("authToken");
         localStorage.removeItem("authUser");
+        window.dispatchEvent(new Event("auth-updated"));
     };
 
     const refreshProfile = async () => {
@@ -85,3 +98,4 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+    

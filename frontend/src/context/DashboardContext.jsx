@@ -30,7 +30,19 @@ export const DashboardProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        // ✅ Initial fetch (if already logged in)
         fetchDashboardData();
+
+        // ✅ Re-fetch dashboard when login/logout or CRUD happens
+        const handleDashboardUpdate = () => fetchDashboardData();
+
+        window.addEventListener("auth-updated", handleDashboardUpdate);
+        window.addEventListener("dashboard-updated", handleDashboardUpdate);
+
+        return () => {
+            window.removeEventListener("auth-updated", handleDashboardUpdate);
+            window.removeEventListener("dashboard-updated", handleDashboardUpdate);
+        };
     }, []);
 
     return (

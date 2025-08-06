@@ -23,6 +23,10 @@ export const IncomeProvider = ({ children }) => {
         try {
             const newIncome = await addIncomeService(payload);
             setIncomes((prev) => [...prev, newIncome]);
+
+            // ✅ Notify dashboard to refresh
+            window.dispatchEvent(new Event("dashboard-updated"));
+
             return newIncome;
         } catch (error) {
             throw error;
@@ -33,6 +37,9 @@ export const IncomeProvider = ({ children }) => {
         try {
             await deleteIncomeService(id);
             setIncomes((prev) => prev.filter((income) => income._id !== id));
+
+            // ✅ Notify dashboard to refresh
+            window.dispatchEvent(new Event("dashboard-updated"));
         } catch (error) {
             throw error;
         }
@@ -57,7 +64,9 @@ export const IncomeProvider = ({ children }) => {
     }, []);
 
     return (
-        <IncomeContext.Provider value={{ incomes, loading, fetchIncomes, addIncome, deleteIncome, downloadIncome }}>
+        <IncomeContext.Provider
+            value={{ incomes, loading, fetchIncomes, addIncome, deleteIncome, downloadIncome }}
+        >
             {children}
         </IncomeContext.Provider>
     );

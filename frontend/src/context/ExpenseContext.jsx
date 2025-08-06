@@ -23,6 +23,10 @@ export const ExpenseProvider = ({ children }) => {
         try {
             const newExpense = await addExpenseService(payload);
             setExpenses((prev) => [...prev, newExpense]);
+
+            // ✅ Notify dashboard to refresh
+            window.dispatchEvent(new Event("dashboard-updated"));
+
             return newExpense;
         } catch (error) {
             throw error;
@@ -33,6 +37,9 @@ export const ExpenseProvider = ({ children }) => {
         try {
             await deleteExpenseService(id);
             setExpenses((prev) => prev.filter((expense) => expense._id !== id));
+
+            // ✅ Notify dashboard to refresh
+            window.dispatchEvent(new Event("dashboard-updated"));
         } catch (error) {
             throw error;
         }
@@ -57,7 +64,9 @@ export const ExpenseProvider = ({ children }) => {
     }, []);
 
     return (
-        <ExpenseContext.Provider value={{ expenses, loading, fetchExpenses, addExpense, deleteExpense, downloadExpense }}>
+        <ExpenseContext.Provider
+            value={{ expenses, loading, fetchExpenses, addExpense, deleteExpense, downloadExpense }}
+        >
             {children}
         </ExpenseContext.Provider>
     );

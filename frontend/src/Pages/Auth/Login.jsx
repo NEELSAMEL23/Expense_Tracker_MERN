@@ -35,10 +35,17 @@ export default function Login() {
       const data = await login(form.email, form.password);
       if (data) {
         localStorage.setItem("savedEmail", form.email);
+
+        // ✅ FIX: Trigger dashboard data refresh
+        window.dispatchEvent(new Event("auth-updated"));
+
         navigate("/auth/dashboard");
       }
     } catch (err) {
-      setError(err?.response?.data?.message || "Unable to reach the server. Please try again later.");
+      setError(
+        err?.response?.data?.message ||
+        "Unable to reach the server. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
@@ -90,7 +97,8 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-200 ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+            className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-200 ${loading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
           >
             {loading ? "Logging in..." : "Login"}
           </button>
