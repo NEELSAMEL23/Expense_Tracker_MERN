@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/SideBar";
+import SideBar from "../components/SideBar";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FilePlus, BarChart2, LogOut } from "lucide-react";
 
-export default function Sidebar({ isOpen }) {
+export default function SideBar({ isOpen }) {
   const { user, logout } = useAuth();
 
   if (!user) return null;
