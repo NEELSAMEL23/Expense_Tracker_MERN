@@ -20,7 +20,7 @@ export default function Layout({ children }) {
 
       <div className="flex flex-1 pt-14"> {/* pt-14 = navbar height */}
         {/* Sidebar only when logged in */}
-        <Sidebar isOpen={isSidebarOpen} />
+        <SideBar isOpen={isSidebarOpen} />
 
         {/* Main content area */}
         <div
