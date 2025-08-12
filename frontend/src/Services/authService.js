@@ -1,9 +1,9 @@
-import axiosInstance from "./axiosInstance";
-import { API_PATHS } from "./apiPaths";
+import AxiosInstance from "./AxiosInstance";
+import { API_PATHS } from "./ApiPaths";
 
 export const registerService = async (formData) => {
   try {
-    const { data } = await axiosInstance.post(API_PATHS.AUTH.REGISTER, formData, {
+    const { data } = await AxiosInstance.post(API_PATHS.AUTH.REGISTER, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return data;
@@ -14,7 +14,7 @@ export const registerService = async (formData) => {
 
 export const loginService = async (payload) => {
   try {
-    const { data } = await axiosInstance.post(API_PATHS.AUTH.LOGIN, payload);
+    const { data } = await AxiosInstance.post(API_PATHS.AUTH.LOGIN, payload);
     if (data?.token) {
       localStorage.setItem("token", data.token);
     }
@@ -26,7 +26,7 @@ export const loginService = async (payload) => {
 
 export const getProfileService = async () => {
   try {
-    const { data } = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
+    const { data } = await AxiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
     return data;
   } catch (error) {
     throw error.response?.data || { message: "Unable to fetch profile" };

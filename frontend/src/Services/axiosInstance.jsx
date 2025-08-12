@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BASEURL } from "./apiPaths";
+import { BASEURL } from "./ApiPaths";
 
 const LOGIN_ROUTE = "/auth/login";
 
-const axiosInstance = axios.create({
+const AxiosInstance = axios.create({
   baseURL: BASEURL,
   headers: {
     "Content-Type": "application/json",
@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 });
 
 // ✅ Add token to every request if present
-axiosInstance.interceptors.request.use(
+AxiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
 );
 
 // ✅ Global response error handling
-axiosInstance.interceptors.response.use(
+AxiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
@@ -54,4 +54,4 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export default axiosInstance;
+export default AxiosInstance;

@@ -1,5 +1,5 @@
-import axiosInstance from "./axiosInstance";
-import { API_PATHS } from "./apiPaths";
+import axiosInstance from "./AxiosInstance";
+import { API_PATHS } from "./ApiPaths";
 
 export const addIncomeService = async (payload) => {
     try {

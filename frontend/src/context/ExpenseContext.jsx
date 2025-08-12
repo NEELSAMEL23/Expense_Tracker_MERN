@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { addExpenseService, getExpenseService, deleteExpenseService, downloadExpenseService } from "../Services/expenseService";
+import { addExpenseService, getExpenseService, deleteExpenseService, downloadExpenseService } from "../Services/ExpenseService";
 
 const ExpenseContext = createContext(null);
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getDashboardDataService } from "../Services/dashboardService";
+import { getDashboardDataService } from "../Services/DashboardService";
 
 const DashboardContext = createContext(null);
 

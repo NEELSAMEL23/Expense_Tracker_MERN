@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { addIncomeService, getIncomeService, deleteIncomeService, downloadIncomeService } from "../Services/incomeService";
+import { addIncomeService, getIncomeService, deleteIncomeService, downloadIncomeService } from "../Services/IncomeService";
 
 const IncomeContext = createContext(null);
 
