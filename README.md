@@ -6,9 +6,14 @@
 </p>
 
 <p align="center">
-  <a href="https://expense-tracker-mern-jet.vercel.app/" target="_blank">🌐 Live Frontend</a> |
-  <a href="https://expense-tracker-mern-ttwh.onrender.com" target="_blank">⚙ Backend API</a>
+  <a href="https://expense-tracker-mern-jet.vercel.app/">
+    <img src="https://img.shields.io/badge/Frontend-Live%20Demo-blue?style=for-the-badge&logo=react" alt="Frontend Live Demo">
+  </a>
+  <a href="https://expense-tracker-mern-ttwh.onrender.com">
+    <img src="https://img.shields.io/badge/Backend-Live%20API-green?style=for-the-badge&logo=node.js" alt="Backend Live API">
+  </a>
 </p>
+
 
 ---
 
