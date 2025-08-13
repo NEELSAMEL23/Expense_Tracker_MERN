@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import NotFound from "./pages/NotFound";
-import Dashboard from "./pages/Dashboards/Dashboards";
+import Login from "./Pages/Auth/Login";
+import Register from "./Pages/Auth/Register";
+import NotFound from "./Pages/NotFound";
+import Dashboard from "./Pages/Dashboards/Dashboards";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Income from "./Pages/Income/Income";
 import Expense from "./Pages/Expense/Expense";
